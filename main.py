@@ -19,7 +19,7 @@ async def on_member_join(member):
     channel = discord.utils.get(member.guild.text_channels, name="registration")  # ёбаныфй костыль - ПЕРЕДЕЛАТЬ
     no_name = discord.utils.get(member.guild.roles, name='no_name')
     await member.add_roles(no_name)
-    await channel.send(f'{member.mention} .reg чтобы зарегистрироваться (Фамилия Имя Номер_курса)')
+    await channel.send(f'{member.mention} .reg чтобы зарегистрироваться (Фамилия Имя Номер_группы)')
 
 
 @client.command(pass_context=True)
