@@ -1,4 +1,3 @@
-import datetime
 
 import discord
 from discord.ext import commands
@@ -85,5 +84,5 @@ async def reg(ctx, surname=' ', name=' ', group=' '):
     # if group.isdigit():
     # добавить роль, обозначающую группу
 
-token = ''
+token = open('token.txt').readline()
 client.run(token)
