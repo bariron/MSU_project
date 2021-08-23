@@ -17,7 +17,7 @@ async def on_ready():
 
 @client.event
 async def on_member_join(member):
-    channel = discord.utils.get(member.guild.text_channels, name="регистрация")  # ёбаныфй костыль - ПЕРЕДЕЛАТЬ
+    channel = discord.utils.get(member.guild.text_channels, name="registration")  # ёбаныфй костыль - ПЕРЕДЕЛАТЬ
     no_name = discord.utils.get(member.guild.roles, name='no_name')
     await member.add_roles(no_name)
     await channel.send(f'{member.mention} .reg чтобы зарегистрироваться (Фамилия Имя Номер_курса)')
@@ -43,35 +43,12 @@ async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.send(f'ban user {member.mention}')
 
-
-@client.command(pass_context=True)
-async def hello(ctx):
-    author = ctx.message.author
-    await ctx.send(f'{author.mention} hello')
-
-
-@client.command(pass_context=True)
-@commands.has_permissions(administrator=True)
-async def time(ctx):
-    emb = discord.Embed(title='Your title', colour=discord.Colour.green(), url='https://www.timeserver.ru/')
-    emb.set_author(name=client.user.name, icon_url=client.user.avatar_url)
-    emb.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
-    emb.set_image(
-        url='https://lh3.googleusercontent.com/proxy/FaTGjJBeGifej81fig9hxI3kQg2i1D0UK34vnQqKr9QlDUAIJs1StycvtwumfR9FQxtAMiXnH8Dqj2i_dlHLRmSR8S8')
-    emb.set_thumbnail(url='https://www.meme-arsenal.com/memes/35ac4b2ea6cfc4eb68bb0b0b76dfb669.jpg')
-    now_date = datetime.datetime.now()
-    emb.add_field(name='Time', value='Time: {}'.format(now_date))
-
-    await ctx.send(embed=emb)
-
-
 @client.command(pass_context=True)
 async def help(ctx):
     emb = discord.Embed(title='Навигация по командам')
     emb.add_field(name='{}time'.format("."), value='Показывает Московское время')
     emb.add_field(name='{}hello'.format("."), value='С вами поздороваються')
     emb.add_field(name='{}reg'.format("."), value='Регистрация')
-
     await ctx.send(embed=emb)
 
 
@@ -108,6 +85,5 @@ async def reg(ctx, surname=' ', name=' ', group=' '):
     # if group.isdigit():
     # добавить роль, обозначающую группу
 
-
-token = open('token.txt').readline()
+token = ''
 client.run(token)
