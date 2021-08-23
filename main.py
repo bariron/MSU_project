@@ -18,8 +18,6 @@ async def on_ready():
 @client.event
 async def on_member_join(member):
     channel = discord.utils.get(member.guild.text_channels, name="регистрация")  # ёбаныфй костыль - ПЕРЕДЕЛАТЬ
-    await channel.send(
-        'https://sun9-22.userapi.com/impg/Iexzvw-4e7q-CCqHHiFHhny9O2urWicX-DKiJw/Z5B1NNLFsZQ.jpg?size=366x344&quality=96&sign=59b571f75763122019069090ae6c038c&type=album%27')
     no_name = discord.utils.get(member.guild.roles, name='no_name')
     await member.add_roles(no_name)
     await channel.send(f'{member.mention} .reg чтобы зарегистрироваться (Фамилия Имя Номер_курса)')
@@ -94,7 +92,6 @@ async def reg(ctx, surname=' ', name=' ', group=' '):
     await ctx.author.edit(nick='{0} {1}'.format(surname, name))
     no_name = discord.utils.get(ctx.message.guild.roles, name='no_name')
     await ctx.author.remove_roles(no_name)
-    print(group[0])
     if group[0] == '1':
         k1 = discord.utils.get(ctx.message.guild.roles, name='1 курс')
         await ctx.author.add_roles(k1)
