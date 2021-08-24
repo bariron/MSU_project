@@ -62,7 +62,8 @@ async def mute(ctx, member: discord.Member):
 @client.command()
 async def roll(ctx, num):
     if num.isdigit():
-        await ctx.send(f'{ctx.author.mention} получает случайное число(1-{num}): {random.randint(1, num)}')
+        print('a')
+        await ctx.send(f'{ctx.author.mention} получает случайное число(1-{num}): {random.randint(1, int(num))}')
 
 
 @client.command()
