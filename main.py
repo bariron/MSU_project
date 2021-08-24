@@ -1,4 +1,4 @@
-
+import random
 import discord
 from discord.ext import commands
 
@@ -42,11 +42,14 @@ async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.send(f'ban user {member.mention}')
 
+
 @client.command(pass_context=True)
 async def help(ctx):
     emb = discord.Embed(title='Навигация по командам')
     emb.add_field(name='{}reg'.format("."), value='Регистрация')
+    emb.add_field(name='{}roll [n]'.format("."), value='Случайное число в диапазоне 1-n')
     await ctx.send(embed=emb)
+
 
 @client.command()
 @commands.has_permissions(administrator=True)
@@ -54,6 +57,13 @@ async def mute(ctx, member: discord.Member):
     await ctx.channel.purge(limit=1)
     mute_role = discord.utils.get(ctx.message.guild.roles, name='mute')
     await member.add_roles(mute_role)
+
+
+@client.command()
+async def roll(ctx, num):
+    if num.isdigit():
+        await ctx.send(f'{ctx.author.mention} получает случайное число(1-{num}): {random.randint(1, num)}')
+
 
 @client.command()
 async def reg(ctx, surname=' ', name=' ', group=' '):
