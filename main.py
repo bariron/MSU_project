@@ -22,6 +22,15 @@ async def on_member_join(member):
     await channel.send(f'{member.mention} .reg чтобы зарегистрироваться (Фамилия Имя Номер_группы)')
 
 
+@client.event
+async def on_message(msg):
+    channel_meme = discord.utils.get(msg.guild.text_channels, name="memes")
+    channel_rofl = discord.utils.get(msg.guild.text_channels, name="rofls")
+    if (msg.channel == channel_meme) | (msg.channel == channel_rofl):
+        await msg.add_reaction('👍')
+        await msg.add_reaction('👎')
+
+
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
 async def clear(ctx, amount=100):
