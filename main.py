@@ -29,6 +29,7 @@ async def on_message(msg):
     if (msg.channel == channel_meme) | (msg.channel == channel_rofl):
         await msg.add_reaction('👍')
         await msg.add_reaction('👎')
+    await client.process_commands(msg)
 
 
 @client.command(pass_context=True)
