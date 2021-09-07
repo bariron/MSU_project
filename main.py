@@ -1,6 +1,13 @@
 import random
 import discord
+import logging
 from discord.ext import commands
+
+'''logger = logging.getLogger('discord')
+logger.setLevel(logging.INFO)
+handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)'''
 
 intents = discord.Intents.all()
 intents.members = True
@@ -12,6 +19,7 @@ client.remove_command('help')
 @client.event
 async def on_ready():
     print('BOT_connected')
+    #logging.info("Bot has connected successfully")
 
 
 @client.event
@@ -24,8 +32,8 @@ async def on_member_join(member):
 
 @client.event
 async def on_message(msg):
-    channel_meme = discord.utils.get(msg.guild.text_channels, name="memes")
-    channel_rofl = discord.utils.get(msg.guild.text_channels, name="rofls")
+    channel_meme = discord.utils.get(msg.guild.text_channels, name="╟🐸мемы")
+    channel_rofl = discord.utils.get(msg.guild.text_channels, name="╟🦽рофл")
     if (msg.channel == channel_meme) | (msg.channel == channel_rofl):
         await msg.add_reaction('👍')
         await msg.add_reaction('👎')
